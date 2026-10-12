@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Jarpula Nirjala">
+  <title>Phish Lens — Suspicious URL & Lookalike Domain Analyzer | RavenShield</title>
+  <meta name="description" content="Dissect suspicious links: lookalike and homoglyph domains, punycode tricks, brand impersonation, hidden credentials, shorteners and risky TLDs. Free, offline, no link is ever visited.">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css?v=17">
+  <script src="assets/js/core.js?v=16" defer></script>
+  <script src="assets/js/pages/phishing.js?v=16" defer></script>
+</head>
+<body data-page="phishing">
+  <div id="rs-header"></div>
+  <main class="container">
+    <section class="tool-hero">
+      <div class="crumbs"><a href="index.html">Home</a> / <a href="index.html#suite">Tools</a> / Phish Lens</div>
+      <div class="head"><span class="ico ico-lg" data-icon="hook"></span><h1>Phish <span class="grad">Lens</span></h1><span class="tag ok">Never visits the link</span></div>
+      <p class="lead">Paste a link from an email, SMS or chat. Phish Lens takes it apart offline: lookalike domains, homoglyphs, punycode, brand impersonation, hidden logins, shorteners and risky TLDs. You don't have to click it to know.</p>
+    </section>
+    <div class="tool-grid">
+      <div class="stack">
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="globe">Links to analyze</h3><button class="btn btn-sm" id="sample" data-icon="play">Load samples</button></div>
+          <div class="panel-body">
+            <textarea id="urls" rows="7" placeholder="One URL per line — or paste a whole email and we'll extract the links"></textarea>
+            <button class="btn btn-primary" id="go" data-icon="scan" style="margin-top:.8rem">Analyze</button>
+          </div>
+        </div>
+        <div class="panel"><div class="panel-head"><h3 data-icon="eye">Anatomy</h3></div><div class="panel-body" id="anatomy"><div class="empty">Select a result to see how the URL breaks down.</div></div></div>
+      </div>
+      <div class="panel"><div class="panel-head"><h3 data-icon="alert">Results</h3><span class="tag" id="count">0</span></div><div class="panel-body" id="out"><div class="empty">No links analyzed yet.</div></div></div>
+    </div>
+  </main>
+  <div id="rs-footer"></div>
+</body>
+</html>

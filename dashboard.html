@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Jarpula Nirjala">
+  <title>Evidence Dashboard — RavenShield Console</title>
+  <meta name="description" content="One sealed evidence log for every RavenShield tool: timeline, filters, chain verification, JSON/CSV/PDF export and desktop alerts.">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css?v=17">
+  <script src="assets/js/core.js?v=16" defer></script>
+  <script src="assets/js/pages/dashboard.js?v=16" defer></script>
+</head>
+<body data-page="dashboard">
+  <div id="rs-header"></div>
+  <main class="container">
+    <section class="tool-hero" style="padding-bottom:20px">
+      <div class="head" style="justify-content:space-between">
+        <div style="display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap">
+          <div data-raven-logo="md" data-size="96px"></div>
+          <div><h1>Evidence <span class="grad">Console</span></h1><p class="muted" style="margin:.2rem 0 0" id="greet">Every tool, one sealed log. Stored only in this browser.</p></div>
+        </div>
+        <div class="btn-row no-print">
+          <button class="btn btn-sm btn-primary" id="verify" data-icon="shieldCheck">Verify chain</button>
+          <button class="btn btn-sm" id="notify" data-icon="bell">Alerts</button>
+          <button class="btn btn-sm" id="demo" data-icon="play">Load demo data</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid grid-4" id="stats"></div>
+
+    <div class="tool-grid" style="margin-top:1.25rem;padding-bottom:0">
+      <div class="panel">
+        <div class="panel-head"><h3 data-icon="activity">Events · last 14 days</h3><div id="legend" style="display:flex;gap:.6rem;flex-wrap:wrap;font-size:.75rem"></div></div>
+        <div class="panel-body"><div class="chart-box"><canvas id="chart"></canvas></div></div>
+      </div>
+      <div class="stack">
+        <div id="chainstat" class="verdict"><div class="v-icon" data-icon="shield"></div><div><h4>Chain not verified yet</h4><p>Verifying…</p></div></div>
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="grid">By source</h3></div>
+          <div class="panel-body" id="bysource"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin:1.25rem 0 80px">
+      <div class="panel-head">
+        <h3 data-icon="book">Sealed records</h3>
+        <div class="btn-row no-print">
+          <button class="btn btn-sm" id="exp-json" data-icon="download">JSON</button>
+          <button class="btn btn-sm" id="exp-csv" data-icon="download">CSV</button>
+          <button class="btn btn-sm" id="print" data-icon="printer">PDF report</button>
+          <label class="btn btn-sm" style="cursor:pointer" data-icon="upload">Import<input type="file" id="import" accept=".json" hidden></label>
+          <button class="btn btn-sm btn-danger" id="clear" data-icon="trash">Clear</button>
+        </div>
+      </div>
+      <div class="panel-body no-print" style="border-bottom:1px solid var(--line)">
+        <div class="grid grid-3" style="gap:.8rem">
+          <input type="search" id="q" placeholder="Search titles & details…">
+          <select id="fsrc"><option value="">All sources</option></select>
+          <select id="fsev"><option value="">All severities</option><option>critical</option><option>high</option><option>medium</option><option>low</option><option>info</option></select>
+        </div>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>#</th><th>Time</th><th>Source</th><th>Severity</th><th>Event</th><th>Seal</th></tr></thead><tbody id="rows"></tbody></table></div>
+      <div class="panel-body" id="more" style="text-align:center"></div>
+    </div>
+  </main>
+  <div id="rs-footer"></div>
+</body>
+</html>

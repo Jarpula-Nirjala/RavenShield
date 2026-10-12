@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Jarpula Nirjala">
+  <title>RavenShield Firewall — Free Prompt-Injection Scanner</title>
+  <meta name="description" content="Free 3-layer prompt-injection firewall: rules engine, heuristic analyzer and sanitizer. Inspect prompts, documents and tool outputs before they reach your LLM.">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css?v=17">
+  <script src="assets/js/core.js?v=16" defer></script>
+  <script src="assets/js/lib/shield-engine.js?v=16" defer></script>
+  <script src="assets/js/pages/shield.js?v=16" defer></script>
+</head>
+<body data-page="shield">
+  <div id="rs-header"></div>
+  <main class="container">
+    <section class="tool-hero">
+      <div class="crumbs"><a href="index.html">Home</a> / <a href="index.html#suite">Tools</a> / Firewall</div>
+      <div class="head"><span class="ico ico-lg" data-icon="shieldCheck"></span><h1>RavenShield <span class="grad">Firewall</span></h1><span class="tag ok">Unlimited · offline</span></div>
+      <p class="lead">Three layers stand between untrusted text and your model: a <b>rules engine</b> (<span id="rc">33</span> signatures + decoders), a <b>heuristic analyzer</b>, and a <b>sanitizer</b> that strips hidden channels and defangs payloads. Paste a prompt, an email, a scraped web page or a tool result.</p>
+    </section>
+
+    <div class="tool-grid">
+      <div class="stack">
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="terminal">Untrusted input</h3><span class="muted mono" id="len" style="font-size:.8rem">0 chars</span></div>
+          <div class="panel-body">
+            <div class="field">
+              <label>Load an attack sample</label>
+              <div class="btn-row" id="samples"></div>
+            </div>
+            <textarea id="input" rows="12" placeholder="Paste a prompt, document, email or tool output…"></textarea>
+            <div class="grid grid-2" style="margin-top:1rem">
+              <div><label>Review at score ≥ <b id="rv-v">25</b></label><input type="range" id="rv" min="5" max="95" value="25"></div>
+              <div><label>Block at score ≥ <b id="bl-v">60</b></label><input type="range" id="bl" min="10" max="100" value="60"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1rem">
+              <label class="check"><input type="checkbox" id="log" checked> Seal review/block results into evidence</label>
+              <div class="btn-row">
+                <label class="check"><input type="checkbox" id="live"> Live</label>
+                <button class="btn btn-primary" id="go" data-icon="scan">Inspect</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="eye">Highlighted input</h3><span class="muted" style="font-size:.8rem">Red = rule hit · invisible characters shown as ⟦·⟧</span></div>
+          <div class="panel-body"><div class="highlight-out" id="hl"><span class="muted">Run an inspection to see matches.</span></div></div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div id="verdict" class="verdict"><div class="v-icon" data-icon="shield"></div><div><h4>Awaiting input</h4><p>Results appear here.</p></div></div>
+        <div class="meter"><i id="meter"></i></div>
+
+        <div class="panel" data-tabs>
+          <div class="panel-head"><div class="tabs"><button class="active" data-tab="t-rules">Layer 1 · Rules</button><button data-tab="t-heu">Layer 2 · Analyzer</button><button data-tab="t-san">Layer 3 · Sanitizer</button></div></div>
+          <div class="panel-body">
+            <div class="tab-pane active" id="t-rules"><div id="rules-out" class="empty">No findings yet.</div></div>
+            <div class="tab-pane" id="t-heu"><div id="heu-out" class="empty">No findings yet.</div></div>
+            <div class="tab-pane" id="t-san">
+              <div id="san-actions" style="margin-bottom:.8rem"></div>
+              <div class="highlight-out" id="san-out"><span class="muted">Sanitized text will appear here.</span></div>
+              <div class="btn-row" style="margin-top:.8rem"><button class="btn btn-sm" id="copy-san" data-icon="copy">Copy sanitized</button><button class="btn btn-sm" id="copy-wrap" data-icon="shield">Copy with safety wrapper</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="activity">Session history</h3><button class="btn btn-sm btn-ghost" id="clear-hist" data-icon="trash">Clear</button></div>
+          <div class="panel-body" id="hist"><div class="empty">No inspections yet.</div></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="cpu">Use it in your own app</h3></div>
+          <div class="panel-body">
+            <p style="font-size:.9rem">The engine is one dependency-free file. Drop it in front of any LLM call:</p>
+<pre><code>&lt;script src="https://YOUR-SITE/assets/js/lib/shield-engine.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  const r = RavenShieldEngine.inspect(userText);
+  if (r.verdict === "block") throw new Error("Injection blocked");
+  callModel(r.sanitized);
+&lt;/script&gt;</code></pre>
+            <a href="docs.html#shield-api" class="btn btn-sm" data-icon="book">Full API docs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="rs-footer"></div>
+</body>
+</html>

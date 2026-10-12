@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Jarpula Nirjala">
+  <title>Sign in or Create Account — RavenShield</title>
+  <meta name="description" content="Create a free RavenShield account to personalise your security console. Optional, because every tool works without signing in.">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css?v=17">
+  <script src="assets/js/core.js?v=16" defer></script>
+  <script src="assets/js/pages/signin.js?v=16" defer></script>
+</head>
+<body data-page="signin">
+  <div id="rs-header"></div>
+  <main class="auth-wrap">
+    <section class="auth-side">
+      <span class="eyebrow" style="width:max-content"><span class="dot"></span>Free forever</span>
+      <h2 style="font-size:clamp(1.9rem,3.4vw,2.8rem);margin:0">Your personal<br>security console.</h2>
+      <p style="font-size:1.12rem;max-width:460px">An account personalises your console with your name and greeting. Create your free account to save your profile and keep your console personal.</p>
+      <ul>
+        <li><img src="assets/img/features/vault.svg" alt="">Unlimited decoys and trap facts</li>
+        <li><img src="assets/img/features/shield.svg" alt="">Unlimited prompt-injection scans</li>
+        <li><img src="assets/img/features/audit.svg" alt="">Tamper-evident evidence log</li>
+        <li><img src="assets/img/features/dashboard.svg" alt="">One dashboard for every tool</li>
+      </ul>
+      <p style="font-size:.95rem;opacity:.9;margin-top:1rem">Private by design: your account is stored only in this browser, with the password protected by PBKDF2-SHA-256 hashing. It is never uploaded.</p>
+    </section>
+
+    <section class="auth-main">
+      <div class="auth-card">
+        <div style="display:grid;place-items:center;margin-bottom:1rem"><div data-raven-logo="md" data-size="110px"></div></div>
+
+        <div id="signed-in" style="display:none;text-align:center">
+          <div class="avatar" id="si-avatar" style="width:72px;height:72px;font-size:1.6rem;margin:0 auto 1rem"></div>
+          <h2 style="margin:0" id="si-name"></h2>
+          <p class="muted" id="si-email" style="margin:.2rem 0 1.4rem"></p>
+          <div class="btn-row" style="justify-content:center">
+            <a class="btn btn-primary" href="dashboard.html" data-icon="grid">Go to my console</a>
+            <button class="btn" id="signout" data-icon="x">Sign out</button>
+          </div>
+          <p class="hint" style="margin-top:1.2rem" id="si-since"></p>
+        </div>
+
+        <div id="auth-forms">
+          <h2 style="text-align:center;margin:0 0 .3rem" id="auth-title">Welcome back</h2>
+          <p class="muted" style="text-align:center;margin:0 0 1.3rem" id="auth-sub">Sign in to your RavenShield console</p>
+          <div class="tabs"><button class="active" data-mode="in" type="button">Sign in</button><button data-mode="up" type="button">Create account</button></div>
+
+          <form id="form" novalidate>
+            <div class="field" id="f-name" style="display:none"><label for="name">Full name</label><input id="name" type="text" autocomplete="name" placeholder="Jarpula Nirjala"></div>
+            <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+            <div class="field">
+              <label for="password">Password</label>
+              <div class="input-row"><input id="password" type="password" autocomplete="current-password" placeholder="••••••••" required><button class="btn btn-sm" type="button" id="toggle" data-icon="eye">Show</button></div>
+              <div class="pw-meter" id="pwm" style="display:none"><i></i></div>
+              <div class="hint" id="pwhint" style="display:none">Use 8+ characters with a mix of letters, numbers and symbols.</div>
+            </div>
+            <div class="field" id="f-confirm" style="display:none"><label for="confirm">Confirm password</label><input id="confirm" type="password" autocomplete="new-password" placeholder="••••••••"></div>
+            <label class="check" id="f-terms" style="display:none;margin-bottom:1rem"><input type="checkbox" id="terms"> I agree to the <a href="about.html#terms">terms of use</a></label>
+            <div class="form-error" id="err"></div>
+            <button class="btn btn-primary btn-lg" style="width:100%" id="submit" type="submit">Sign in</button>
+          </form>
+
+          <div class="divider">or</div>
+          <a class="btn" style="width:100%" href="index.html" data-icon="arrow">Back to home</a>
+          <p class="hint" style="text-align:center;margin-top:1rem">Free forever. No credit card, no paywall.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="rs-footer"></div>
+</body>
+</html>

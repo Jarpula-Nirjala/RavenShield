@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Jarpula Nirjala">
+  <title>About, Security & Privacy — RavenShield</title>
+  <meta name="description" content="Why RavenShield exists, how we handle security and privacy, terms of use and how to get in touch.">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css?v=17">
+  <script src="assets/js/core.js?v=16" defer></script>
+</head>
+<body data-page="about">
+  <div id="rs-header"></div>
+  <main>
+    <section class="section" style="padding-bottom:40px">
+      <div class="container grid grid-2" style="align-items:center;gap:3rem">
+        <div>
+          <span class="eyebrow"><span class="dot"></span>About</span>
+          <h1>Security shouldn't have a <span class="grad">paywall.</span></h1>
+          <p class="lead">Deception is one of the highest-signal defenses there is, but it's usually sold as enterprise software with per-seat pricing. RavenShield makes it free, private and instant for students, startups, researchers, small businesses and anyone building with AI.</p>
+          <div class="btn-row" style="margin-top:1.5rem"><a class="btn btn-primary" href="dashboard.html" data-icon="grid">Open the console</a><a class="btn" href="docs.html" data-icon="book">Read the docs</a></div>
+        </div>
+        <div style="display:grid;place-items:center"><div data-raven-logo="lg" data-size="min(380px, 78vw)"></div></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:20px">
+      <div class="container">
+        <div class="grid grid-3">
+          <div class="card glow-card reveal"><span class="ico ico-lg" data-icon="eye"></span><h3>The raven watches</h3><p>In folklore the raven is the watcher and the messenger. It sees what others miss and reports back. That's the whole idea: quiet traps, loud alerts.</p></div>
+          <div class="card glow-card reveal" style="--d:.08s"><span class="ico ico-lg" data-icon="wifiOff"></span><h3>Local-first</h3><p>No servers, no telemetry. Your decoys, traps and evidence never leave your device unless you export them.</p></div>
+          <div class="card glow-card reveal" style="--d:.16s"><span class="ico ico-lg" data-icon="heart"></span><h3>Free forever</h3><p>Static files cost almost nothing to host, so there's nothing to charge for. Every feature is available to every visitor.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="author" style="padding-top:0">
+      <div class="container">
+        <div class="card glow-card reveal" style="padding:2.2rem">
+          <div class="author-hero">
+            <span class="avatar">JN</span>
+            <div>
+              <span class="eyebrow" style="margin-bottom:.6rem"><span class="dot"></span>Creator &amp; developer</span>
+              <h2 style="margin:0">Jarpula <span class="grad">Nirjala</span></h2>
+              <p style="margin:.4rem 0 0;font-size:1.1rem">Software Engineer · AI/ML · Backend &amp; Distributed Systems</p>
+              <p class="muted" style="margin:.2rem 0 0">B.Tech, Electronics &amp; Communication Engineering, Indian Institute of Information Technology, Surat (2022 – 2026)</p>
+              <div class="chips">
+                <span class="tag violet">SDE Intern · IIT Bombay (cLab)</span>
+                <span class="tag info">AI Systems &amp; Benchmarking Intern · AirDawg Labs</span>
+                <span class="tag danger">arXiv co-author · NeoJaundice-AI</span>
+                <span class="tag ok">IBM · Google · Oracle · HackerRank certified</span>
+              </div>
+            </div>
+          </div>
+          <p style="margin:1.4rem 0 0">I designed and built RavenShield, a free deception-security platform, so that anyone can defend themselves in the AI era. My work spans deep learning for medical imaging, RLHF data pipelines, LLM evaluation infrastructure, and distributed systems in Python and C++.</p>
+
+          <h3 style="margin-top:1.8rem" id="connect">Connect with me</h3>
+          <div class="connect-grid">
+            <a class="connect" href="mailto:nirjala8462@gmail.com"><span class="ci mail" data-icon="mail"></span><div><b>Email</b><small>nirjala8462@gmail.com</small></div></a>
+            <a class="connect" href="tel:+917842849340"><span class="ci phone" data-icon="phone"></span><div><b>Phone</b><small>+91 78428 49340</small></div></a>
+            <!-- Profile links: paste the real URLs into href and remove the comment markers to show them.
+            <a class="connect" href="LINKEDIN_URL" target="_blank" rel="noopener"><span class="ci li" data-icon="linkedin"></span><div><b>LinkedIn</b><small>Jarpula Nirjala</small></div></a>
+            <a class="connect" href="GITHUB_URL" target="_blank" rel="noopener"><span class="ci gh" data-icon="github"></span><div><b>GitHub</b><small>Projects &amp; code</small></div></a>
+            <a class="connect" href="LEETCODE_URL" target="_blank" rel="noopener"><span class="ci lc" data-icon="code"></span><div><b>LeetCode</b><small>600+ problems solved</small></div></a>
+            <a class="connect" href="ARXIV_URL" target="_blank" rel="noopener"><span class="ci ax" data-icon="paper"></span><div><b>arXiv</b><small>NeoJaundice-AI paper</small></div></a>
+            -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="security" style="padding-top:0">
+      <div class="container-narrow">
+        <h2>Security</h2>
+        <p>RavenShield runs entirely client-side. Cryptography uses the browser's Web Crypto API (<code>crypto.subtle</code> for SHA hashing, <code>crypto.getRandomValues</code> for all randomness). There's no server to breach and no database of user data to leak.</p>
+        <h3>Responsible disclosure</h3>
+        <p>Found a vulnerability, such as an XSS in a tool or a detection bypass? Please report it privately through the contact below, with steps to reproduce. Bypasses of the injection engine are especially welcome. Each one becomes a new rule.</p>
+        <hr>
+        <h2 id="privacy">Privacy</h2>
+        <ul>
+          <li><b>What we collect:</b> nothing. There are no analytics scripts or tracking cookies.</li>
+          <li><b>What your browser stores:</b> your decoys, traps, settings and evidence log, in <code>localStorage</code> for this site.</li>
+          <li><b>Third parties:</b> none for fonts or scripts; everything is served from this site. The optional breach check calls the Have I Been Pwned range API with a 5-character hash prefix. Heartbeat checks call only the URLs you add.</li>
+          <li><b>Deleting your data:</b> clear the evidence log in the console, or clear site data in your browser settings.</li>
+        </ul>
+        <hr>
+        <h2 id="terms">Terms of use</h2>
+        <ul>
+          <li>RavenShield is provided free, <b>as is</b>, without warranty of any kind.</li>
+          <li>Use the deception tools only on systems, accounts and data you own or are explicitly authorized to protect. Don't use decoys to deceive people outside your own security perimeter.</li>
+          <li>Detections are heuristic decision support, not guarantees. You are responsible for how you act on them.</li>
+          <li>Tamper-evident records help show integrity. Admissibility is a legal question for your counsel.</li>
+        </ul>
+        <hr>
+        <h2 id="contact">Contact</h2>
+        <p>Questions, feature requests or security reports:</p>
+        <div class="card" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+          <span class="ico ico-lg" data-icon="mail"></span>
+          <div style="flex:1;min-width:200px"><b>Jarpula Nirjala</b><div class="muted" style="font-size:.9rem">Creator of RavenShield · replies to security reports first</div></div>
+          <a class="btn btn-primary" href="mailto:nirjala8462@gmail.com?subject=RavenShield" data-icon="mail">nirjala8462@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="rs-footer"></div>
+</body>
+</html>

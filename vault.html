@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Jarpula Nirjala">
+  <title>RavenVault — Free Decoy Identities & Credential Tripwires</title>
+  <meta name="description" content="Generate unlimited decoy identities, tripwire email aliases and fake cloud keys. Plant them as bait and match leaks back to the exact decoy. Free.">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css?v=17">
+  <script src="assets/js/core.js?v=16" defer></script>
+  <script src="assets/js/pages/vault.js?v=16" defer></script>
+</head>
+<body data-page="vault">
+  <div id="rs-header"></div>
+  <main class="container">
+    <section class="tool-hero">
+      <div class="crumbs"><a href="index.html">Home</a> / <a href="index.html#suite">Tools</a> / RavenVault</div>
+      <div class="head"><span class="ico ico-lg" data-icon="key"></span><h1>Raven<span class="grad">Vault</span></h1><span class="tag ok">Unlimited decoys</span></div>
+      <p class="lead">Mint decoy identities that nobody legitimate will ever use: tripwire email aliases, realistic passwords, fake cloud keys and tokens. Plant them in repos, drives, wikis and paste sites, then let the Leak Matcher pin any sighting to the exact decoy.</p>
+    </section>
+
+    <div class="tool-grid">
+      <div class="stack">
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="plus">Mint a decoy identity</h3></div>
+          <div class="panel-body">
+            <div class="grid grid-2">
+              <div class="field"><label for="label">Decoy name</label><input id="label" type="text" placeholder="svc-backup"></div>
+              <div class="field"><label for="org">Fake organisation / domain</label><input id="org" type="text" placeholder="acme-internal.com"></div>
+            </div>
+            <div class="field">
+              <label for="myemail">Your real email (for a tripwire alias — optional)</label>
+              <input id="myemail" type="email" placeholder="you@gmail.com">
+              <div class="hint">We build <code>you+rs-xxxx@gmail.com</code>. Mail to it still lands in your inbox, so any message proves the decoy leaked. Gmail, Outlook, Proton, iCloud and Fastmail support this. Stored only in this browser.</div>
+            </div>
+            <div class="field"><label for="place">Where will you plant it?</label><input id="place" type="text" placeholder="e.g. old-config branch of internal repo, shared drive /finance/archive"></div>
+            <label>Include</label>
+            <div class="grid grid-2" style="gap:.5rem;margin-bottom:1rem" id="kinds">
+              <label class="check"><input type="checkbox" value="login" checked> Username + password</label>
+              <label class="check"><input type="checkbox" value="aws" checked> AWS-style access key</label>
+              <label class="check"><input type="checkbox" value="gh" checked> GitHub-style token</label>
+              <label class="check"><input type="checkbox" value="api" checked> Generic API key</label>
+              <label class="check"><input type="checkbox" value="db"> Database URL</label>
+              <label class="check"><input type="checkbox" value="jwt"> Session JWT</label>
+            </div>
+            <button class="btn btn-primary" id="mint" data-icon="sparkle">Mint decoy</button>
+          </div>
+        </div>
+
+        <div class="panel" id="matcher">
+          <div class="panel-head"><h3 data-icon="scan">Leak Matcher</h3><span class="tag violet">checks all decoys</span></div>
+          <div class="panel-body">
+            <p style="font-size:.9rem">Paste anything you found: a paste-site dump, server logs, email headers, an AI model's answer, a breach file. Every decoy token is searched for, including the tripwire alias and the hidden marker.</p>
+            <textarea id="leak" rows="8" placeholder="Paste suspicious text here…"></textarea>
+            <div class="btn-row" style="margin-top:.8rem">
+              <button class="btn btn-violet" id="match" data-icon="scan">Search for decoys</button>
+              <label class="btn btn-sm" style="cursor:pointer" data-icon="upload">Load file<input type="file" id="leakfile" hidden></label>
+            </div>
+            <div id="match-out" style="margin-top:1rem"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="grid grid-3" id="vstats"></div>
+        <div class="panel">
+          <div class="panel-head">
+            <h3 data-icon="eye">Watched decoys</h3>
+            <div class="btn-row">
+              <button class="btn btn-sm" id="exp-all" data-icon="download">Bait pack</button>
+              <button class="btn btn-sm btn-ghost" id="exp-json" data-icon="download">JSON</button>
+            </div>
+          </div>
+          <div class="panel-body" id="list"></div>
+        </div>
+        <div class="notice">
+          <span data-icon="info"></span>
+          <div><b>Set an inbox rule:</b> filter messages sent to <code>+rs-</code> into a label like <i>RAVEN ALERT</i> with notifications on. Then hit <b>Report trip</b> on the matching decoy to seal it as evidence.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="rs-footer"></div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Jarpula Nirjala">
+  <title>RavenShield — Free Deception Security for the AI Era</title>
+  <meta name="description" content="RavenShield is a free, browser-based deception security platform: decoy credentials, trap facts, prompt-injection firewall, AI honeypot, tamper-evident evidence logs and more. Free account, no paywall.">
+  <meta name="theme-color" content="#6366f1">
+  <meta property="og:title" content="RavenShield — Let them take the bait">
+  <meta property="og:description" content="Free deception security: plant decoys, catch leaks, seal tamper-evident evidence.">
+  <meta property="og:image" content="assets/img/ravenshield-original.png">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css?v=17">
+  <script src="assets/js/core.js?v=16" defer></script>
+  <script src="assets/js/pages/home.js?v=16" defer></script>
+</head>
+<body data-page="home">
+  <div id="rs-header"></div>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="scanline"></div>
+      <div class="container hero-stage">
+        <span class="eyebrow"><span class="dot"></span>Deception security · 100% free</span>
+        <div data-raven-logo="hero" title="Click the raven"></div>
+        <h1>Let them steal the bait.<br><span class="grad">The raven sees everything.</span></h1>
+        <p class="lead">RavenShield plants decoy credentials, trap facts and honeypot assistants across your stack, firewalls prompt injection, and seals every trip into a tamper-evident evidence chain. Free for everyone. Create your account and start in seconds.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary btn-lg" href="dashboard.html" data-icon="zap">Launch the free console</a>
+          <a class="btn btn-lg" href="#suite" data-icon="grid">Explore 10 tools</a>
+        </div>
+        <div style="margin-top:1.6rem"><div class="typewrap"><span class="t-c">raven@watch:~$</span><span id="typer"></span><span class="cursor"></span></div></div>
+        <div class="hero-meta">
+          <span data-icon="check">Free account</span>
+          <span data-icon="check">Zero data leaves your device</span>
+          <span data-icon="check">SHA-256 sealed evidence</span>
+          <span data-icon="check">Installable &amp; works offline</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marquee"></div>
+    </div>
+
+    <!-- ================= LIVE DEMO ================= -->
+    <section class="section">
+      <div class="container grid grid-2" style="align-items:center;gap:3rem">
+        <div class="reveal">
+          <span class="eyebrow"><span class="dot"></span>Live demo</span>
+          <h2>A decoy key is being watched <span class="grad">right now.</span></h2>
+          <p class="lead">No real person should ever touch a decoy. So when one is used, it's a signal, not noise. Hit the button to play the attacker — RavenShield detects the trip, fingerprints the actor, and seals the event with a real SHA-256 hash into your local evidence log.</p>
+          <div class="card" style="margin:1.5rem 0">
+            <label>Planted decoy · AWS-style access key (fake)</label>
+            <div class="copy-line"><span id="demo-key">AKIA••••••••••••••••</span><button class="icon-btn" id="demo-copy" title="Copy" data-icon="copy"></button></div>
+            <p class="hint">This key is generated in your browser and is not valid anywhere. It's bait.</p>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-violet" id="demo-run" data-icon="play">Play the attacker</button>
+            <a class="btn" href="dashboard.html" data-icon="grid">View sealed evidence</a>
+          </div>
+        </div>
+        <div class="reveal" style="--d:.15s">
+          <div class="terminal">
+            <div class="terminal-bar"><i></i><i></i><i></i>ravenshield — tripwire monitor</div>
+            <div class="terminal-body" id="demo-term"><div class="l t-dim">› watching 1 decoy identity · awaiting interaction…</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SUITE ================= -->
+    <section class="section" id="suite">
+      <div class="container">
+        <div class="center reveal">
+          <span class="eyebrow"><span class="dot"></span>The deception suite</span>
+          <h2>Six surfaces. <span class="grad">One sealed log.</span></h2>
+          <p class="lead">Every tool reports into the same hash-chained evidence log, so one dashboard tells the whole story.</p>
+        </div>
+        <div class="grid grid-3" id="core-tools" style="margin-top:3rem"></div>
+
+        <div class="center reveal" style="margin-top:5rem">
+          <span class="eyebrow"><span class="dot"></span>Extra arsenal</span>
+          <h2>Bonus tools, <span class="grad">also free.</span></h2>
+        </div>
+        <div class="grid grid-4" id="extra-tools" style="margin-top:2.5rem"></div>
+      </div>
+    </section>
+
+    <!-- ================= HOW ================= -->
+    <section class="section">
+      <div class="container grid grid-2" style="gap:3rem;align-items:center">
+        <div class="reveal">
+          <span class="eyebrow"><span class="dot"></span>How it works</span>
+          <h2>Plant. Watch. <span class="grad">Catch. Seal.</span></h2>
+          <div class="steps" style="margin-top:2rem">
+            <div class="step"><div><h4>Plant bait</h4><p>Generate decoy identities, plus-addressed tripwire emails, fake cloud keys and invisible trap facts. Drop them where only an intruder or a leaky AI would look.</p></div></div>
+            <div class="step"><div><h4>Watch every surface</h4><p>Paste logs, AI outputs, dumps and documents into RavenShield. Matchers hunt for your bait, injection payloads and secrets.</p></div></div>
+            <div class="step"><div><h4>Catch &amp; profile</h4><p>Honeypot assistants classify intent (jailbreak, extraction, probing) and fingerprint the client that's talking to them.</p></div></div>
+            <div class="step"><div><h4>Seal the evidence</h4><p>Each event is chained with SHA-256. Edit one byte and verification fails, so your incident timeline stays trustworthy.</p></div></div>
+          </div>
+        </div>
+        <div class="reveal" style="--d:.15s;display:grid;place-items:center">
+          <div data-raven-logo="lg" data-size="min(420px, 80vw)"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EVIDENCE ================= -->
+    <section class="section">
+      <div class="container">
+        <div class="center reveal">
+          <span class="eyebrow"><span class="dot"></span>Evidence, not vibes</span>
+          <h2>Change one byte. <span class="grad">The chain screams.</span></h2>
+          <p class="lead">Each record stores the hash of the one before it. These hashes are computed live in your browser. Tamper with a record and watch everything after it break.</p>
+        </div>
+        <div class="panel reveal" style="margin-top:2.5rem">
+          <div class="panel-head">
+            <h3 data-icon="chain">Sample evidence chain</h3>
+            <div class="btn-row">
+              <button class="btn btn-sm btn-danger" id="chain-tamper" data-icon="alert">Tamper with record #2</button>
+              <button class="btn btn-sm" id="chain-reset" data-icon="refresh">Reset</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="chain" id="chain"></div>
+            <div id="chain-status" class="verdict ok" style="margin-top:.5rem"></div>
+          </div>
+        </div>
+        <p class="hint center" style="margin-top:1rem">Tamper-evident means modifications are detectable. Whether a record is admissible in court is a legal question for your counsel.</p>
+      </div>
+    </section>
+
+    <!-- ================= FREE ================= -->
+    <section class="section">
+      <div class="container">
+        <div class="center reveal">
+          <span class="eyebrow"><span class="dot"></span>No paywall</span>
+          <h2>Everything others charge for — <span class="grad">$0.</span></h2>
+          <p class="lead">No tiers, no trials, no credit card. Every feature is unlocked for every visitor.</p>
+        </div>
+        <div class="grid grid-4" style="margin-top:2.5rem" id="stats"></div>
+        <div class="panel reveal" style="margin-top:1.5rem">
+          <div class="table-wrap">
+            <table class="compare">
+              <thead><tr><th>Capability</th><th>Typical paid platforms</th><th>RavenShield</th></tr></thead>
+              <tbody>
+                <tr><td>Decoy identities</td><td class="no">3 free, more on paid plans</td><td class="yes">Unlimited</td></tr>
+                <tr><td>Prompt-injection inspections</td><td class="no">10 / month free, 500 on paid</td><td class="yes">Unlimited, offline</td></tr>
+                <tr><td>Tamper-evident evidence log</td><td class="no">Scale limits on lower tiers</td><td class="yes">Unlimited records</td></tr>
+                <tr><td>Evidence PDF / JSON export</td><td class="no">Pro tier</td><td class="yes">Included</td></tr>
+                <tr><td>Independent evidence verification</td><td class="no">Varies</td><td class="yes">Built in + open format</td></tr>
+                <tr><td>AI honeypot with intent classification</td><td class="no">Paid</td><td class="yes">Included</td></tr>
+                <tr><td>Secret scanner, breach check, phishing lens, file hashing</td><td class="no">Separate products</td><td class="yes">Included</td></tr>
+                <tr><td>Your data stays on your device</td><td class="no">Stored on vendor servers</td><td class="yes">Always</td></tr>
+                <tr><td>Price</td><td class="no">$12 – $120 / month</td><td class="yes">Free forever</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section">
+      <div class="container-narrow">
+        <div class="center reveal"><span class="eyebrow"><span class="dot"></span>FAQ</span><h2>Questions, <span class="grad">answered.</span></h2></div>
+        <div class="faq reveal" style="margin-top:2rem">
+          <details><summary>Is RavenShield really free?</summary><div>Yes. Every tool is free with no limits. Just create your free account. Because everything runs in your browser, there are no server costs to pass on to you.</div></details>
+          <details><summary>Where is my data stored?</summary><div>In your browser's local storage on your own device. Nothing is uploaded. The only network call any tool makes is the optional breach check in Password Forge, which uses k-anonymity: just the first 5 characters of a SHA-1 hash are sent, never your password.</div></details>
+          <details><summary>How do decoys alert me without a server?</summary><div>RavenVault uses plus-addressed tripwire emails (like <code>you+rs-k39x@gmail.com</code>) that land in your own inbox, so any mail to that alias proves the decoy leaked. You can also paste any dump, log or AI output into the Leak Matcher and it will find every decoy token you've planted, then seal the hit as evidence.</div></details>
+          <details><summary>Can I verify evidence someone else exported?</summary><div>Yes. Open <a href="audit.html#verify">RavenAudit → Verify</a> and drop in a RavenShield evidence JSON. The format is documented, so anyone can re-verify the chain with a few lines of code.</div></details>
+          <details><summary>Can I use the prompt-injection firewall in my own app?</summary><div>Yes. The engine is a standalone JavaScript file (<code>assets/js/lib/shield-engine.js</code>) with no dependencies. See <a href="docs.html#shield-api">the docs</a>.</div></details>
+          <details><summary>Is it legal to use?</summary><div>Deception tools are defensive. Use them only on systems, accounts and data you own or are authorized to protect.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div style="display:grid;place-items:center;margin-bottom:1rem"><div data-raven-logo="md" data-size="150px"></div></div>
+          <h2>Set your first trap <span class="grad">in 30 seconds.</span></h2>
+          <p class="lead" style="margin:0 auto 2rem">Generate a decoy identity, plant it, and let the raven watch.</p>
+          <div class="btn-row" style="justify-content:center">
+            <a class="btn btn-primary btn-lg" href="vault.html" data-icon="key">Create a decoy</a>
+            <a class="btn btn-lg" href="docs.html#quickstart" data-icon="book">Read the quickstart</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="rs-footer"></div>
+</body>
+</html>

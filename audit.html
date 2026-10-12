@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Jarpula Nirjala">
+  <title>RavenAudit — Tamper-Evident Action Log & Evidence Verifier</title>
+  <meta name="description" content="Seal every AI agent action into a SHA-256 hash chain and verify any RavenShield evidence export independently. Free and offline.">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css?v=17">
+  <script src="assets/js/core.js?v=16" defer></script>
+  <script src="assets/js/pages/audit.js?v=16" defer></script>
+</head>
+<body data-page="audit">
+  <div id="rs-header"></div>
+  <main class="container">
+    <section class="tool-hero">
+      <div class="crumbs"><a href="index.html">Home</a> / <a href="index.html#suite">Tools</a> / RavenAudit</div>
+      <div class="head"><span class="ico ico-lg" data-icon="chain"></span><h1>Raven<span class="grad">Audit</span></h1><span class="tag ok">SHA-256 chained</span></div>
+      <p class="lead">An append-only, tamper-evident record of what your AI agents did. Every action is sealed with SHA-256 and linked to the previous record, so any later edit, deletion or reordering is caught on verification. Verify your own log or anyone's export right here.</p>
+    </section>
+
+    <div class="panel" style="margin-bottom:1.25rem">
+      <div class="panel-head">
+        <h3 data-icon="chain">Your live chain</h3>
+        <div class="btn-row">
+          <button class="btn btn-sm btn-primary" id="verify-now" data-icon="shieldCheck">Verify now</button>
+          <button class="btn btn-sm" id="anchor" data-icon="globe">Copy anchor</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="chain" id="chain"></div>
+        <div id="status" class="verdict" style="margin-top:.5rem"><div class="v-icon" data-icon="shield"></div><div><h4>Not verified yet</h4><p>Press "Verify now".</p></div></div>
+      </div>
+    </div>
+
+    <div class="tool-grid">
+      <div class="panel" data-tabs>
+        <div class="panel-head"><div class="tabs"><button class="active" data-tab="a-log">Log an action</button><button data-tab="a-bulk">Bulk import</button></div></div>
+        <div class="panel-body">
+          <div class="tab-pane active" id="a-log">
+            <div class="grid grid-2">
+              <div class="field"><label>Actor (agent / user)</label><input id="actor" type="text" placeholder="invoice-bot"></div>
+              <div class="field"><label>Action</label>
+                <select id="action">
+                  <option value="tool_call">Tool call</option><option value="file_write">File write</option><option value="file_read">File read</option>
+                  <option value="http_request">HTTP request</option><option value="db_query">Database query</option><option value="email_send">Email sent</option>
+                  <option value="shell_exec">Shell command</option><option value="payment">Payment / transfer</option><option value="approval">Human approval</option><option value="custom">Custom</option>
+                </select></div>
+            </div>
+            <div class="field"><label>Target</label><input id="target" type="text" placeholder="s3://finance/reports/q3.pdf"></div>
+            <div class="field"><label>Details (text or JSON)</label><textarea id="details" rows="4" placeholder='{"bytes": 20480, "approvedBy": "j.doe"}'></textarea></div>
+            <div class="field"><label>Severity</label><select id="sev"><option>info</option><option>low</option><option>medium</option><option>high</option><option>critical</option></select></div>
+            <button class="btn btn-primary" id="seal" data-icon="lock">Seal action</button>
+          </div>
+          <div class="tab-pane" id="a-bulk">
+            <p style="font-size:.9rem">Paste JSON Lines, one action per line. Fields: <code>actor</code>, <code>action</code>, <code>target</code>, <code>details</code>, <code>severity</code>.</p>
+            <textarea id="bulk" rows="9">{"actor":"research-agent","action":"http_request","target":"https://api.github.com/repos","severity":"info"}
+{"actor":"research-agent","action":"file_write","target":"/tmp/summary.md","details":{"bytes":4096}}
+{"actor":"ops-agent","action":"shell_exec","target":"kubectl delete pod web-7f9","severity":"high"}</textarea>
+            <button class="btn btn-primary" id="bulk-go" data-icon="upload" style="margin-top:.8rem">Seal all lines</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="verify">
+        <div class="panel-head"><h3 data-icon="shieldCheck">Verify an evidence export</h3><span class="tag violet">independent</span></div>
+        <div class="panel-body">
+          <p style="font-size:.9rem">Drop a <code>ravenshield-evidence.json</code> file from anyone. It is checked locally and never uploaded.</p>
+          <label class="dropzone" id="drop"><span data-icon="upload"></span><b>Drop evidence JSON</b><br><span style="font-size:.85rem">or click to choose a file</span><input type="file" id="file" accept=".json,application/json" hidden></label>
+          <div id="vout" style="margin-top:1rem"></div>
+          <details style="margin-top:1rem"><summary class="muted" style="cursor:pointer">Verify it yourself with Python</summary>
+<pre><code>import json, hashlib
+d = json.load(open("ravenshield-evidence.json", encoding="utf-8"))
+prev = "0" * 64
+for i, r in enumerate(d["records"]):
+    body = [r["seq"], r["id"], r["ts"], r["source"], r["kind"],
+            r["severity"], r["title"], r.get("detail"), r["prev"]]
+    h = hashlib.sha256(json.dumps(body, separators=(",", ":"),
+                       ensure_ascii=False).encode()).hexdigest()
+    assert r["prev"] == prev and r["seq"] == i and h == r["hash"], f"broken at {i}"
+    prev = h
+print("chain OK, head", prev)</code></pre>
+          </details>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="rs-footer"></div>
+</body>
+</html>

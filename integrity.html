@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Jarpula Nirjala">
+  <title>Integrity Hasher — Hash & Verify Files Locally | RavenShield</title>
+  <meta name="description" content="Compute SHA-256, SHA-384, SHA-512 and SHA-1 hashes of files or text in your browser, compare against published checksums, and notarize file hashes into your evidence chain.">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css?v=17">
+  <script src="assets/js/core.js?v=16" defer></script>
+  <script src="assets/js/pages/integrity.js?v=16" defer></script>
+</head>
+<body data-page="integrity">
+  <div id="rs-header"></div>
+  <main class="container">
+    <section class="tool-hero">
+      <div class="crumbs"><a href="index.html">Home</a> / <a href="index.html#suite">Tools</a> / Integrity Hasher</div>
+      <div class="head"><span class="ico ico-lg" data-icon="hash"></span><h1>Integrity <span class="grad">Hasher</span></h1><span class="tag ok">Files never uploaded</span></div>
+      <p class="lead">Check that a download hasn't been tampered with, fingerprint evidence files, or notarize a document's hash into your sealed evidence chain. It proves the file existed in exactly this form at this moment.</p>
+    </section>
+    <div class="tool-grid">
+      <div class="stack">
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="file">Files</h3></div>
+          <div class="panel-body">
+            <label class="dropzone" id="drop"><span data-icon="upload"></span><b>Drop files to hash</b><br><span style="font-size:.85rem">or click to choose · up to 1 GB each</span><input type="file" id="files" multiple hidden></label>
+            <div class="field" style="margin-top:1rem"><label>Expected checksum (optional)</label><input type="text" id="expect" class="mono" placeholder="Paste the publisher's SHA-256 / SHA-512 / SHA-1 to compare"></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="terminal">Text</h3></div>
+          <div class="panel-body">
+            <textarea id="text" rows="5" placeholder="Type or paste text to hash live"></textarea>
+            <dl class="kv" id="thash" style="margin-top:1rem"></dl>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3 data-icon="hash">Results</h3><button class="btn btn-sm" id="export" data-icon="download">Export manifest</button></div>
+        <div class="panel-body" id="out"><div class="empty">Drop a file to see its hashes.</div></div>
+      </div>
+    </div>
+  </main>
+  <div id="rs-footer"></div>
+</body>
+</html>

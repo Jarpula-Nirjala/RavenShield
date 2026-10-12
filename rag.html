@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Jarpula Nirjala">
+  <title>RavenRAG — Trap Facts & Invisible Document Watermarks</title>
+  <meta name="description" content="Plant fictitious trap facts and invisible zero-width fingerprints in documents. If an AI model or chatbot repeats them, you know exactly which document leaked. Free.">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css?v=17">
+  <script src="assets/js/core.js?v=16" defer></script>
+  <script src="assets/js/pages/rag.js?v=16" defer></script>
+</head>
+<body data-page="rag">
+  <div id="rs-header"></div>
+  <main class="container">
+    <section class="tool-hero">
+      <div class="crumbs"><a href="index.html">Home</a> / <a href="index.html#suite">Tools</a> / RavenRAG</div>
+      <div class="head"><span class="ico ico-lg" data-icon="file"></span><h1>Raven<span class="grad">RAG</span></h1><span class="tag violet">Two detection channels</span></div>
+      <p class="lead">Catch AI knowledge bases and chatbots that leak your documents. RavenRAG hides an <b>invisible fingerprint</b> in the text and plants a <b>trap fact</b>, a believable but fictitious detail that exists nowhere else. If either one shows up in a model's answer, you know exactly which document leaked.</p>
+    </section>
+
+    <div class="tool-grid">
+      <div class="panel" data-tabs>
+        <div class="panel-head"><div class="tabs"><button class="active" data-tab="p-plant">1 · Plant</button><button data-tab="p-detect">2 · Detect</button></div></div>
+        <div class="panel-body">
+          <div class="tab-pane active" id="p-plant">
+            <div class="grid grid-2">
+              <div class="field"><label for="doclabel">Document label</label><input id="doclabel" type="text" placeholder="Q3 pricing strategy (shared with vendor X)"></div>
+              <div class="field"><label for="topic">Topic for the trap fact</label><input id="topic" type="text" placeholder="pricing"></div>
+            </div>
+            <div class="field"><label for="doc">Document text</label><textarea id="doc" rows="10" placeholder="Paste the document you are about to share or index…"></textarea></div>
+            <div class="grid grid-2" style="gap:.5rem;margin-bottom:1rem">
+              <label class="check"><input type="checkbox" id="use-zw" checked> Invisible fingerprint</label>
+              <label class="check"><input type="checkbox" id="use-fact" checked> Trap fact</label>
+            </div>
+            <div class="field">
+              <label>Trap fact (edit if you like)</label>
+              <div class="input-row"><input type="text" id="fact"><button class="btn btn-sm" id="regen" data-icon="refresh">New</button></div>
+              <div class="hint">Make it plausible but fictitious. Never use a real fact. It must not exist anywhere else.</div>
+            </div>
+            <button class="btn btn-primary" id="plant" data-icon="sparkle">Watermark document</button>
+            <div id="plant-out" style="margin-top:1rem"></div>
+          </div>
+          <div class="tab-pane" id="p-detect">
+            <p style="font-size:.9rem">Paste a chatbot answer, a scraped page or any suspicious text. RavenRAG decodes hidden fingerprints and searches for every trap fact you've planted, including partial and reworded matches.</p>
+            <textarea id="suspect" rows="10" placeholder="Paste AI output or suspicious text…"></textarea>
+            <button class="btn btn-violet" id="detect" data-icon="scan" style="margin-top:.8rem">Detect leaks</button>
+            <div id="detect-out" style="margin-top:1rem"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="book">Trap registry</h3><button class="btn btn-sm btn-ghost" id="exp" data-icon="download">Export</button></div>
+          <div class="panel-body" id="reg"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="info">How the two channels work</h3></div>
+          <div class="panel-body" style="font-size:.9rem">
+            <p><b class="t-c">Invisible fingerprint.</b> A 32-bit ID is encoded as zero-width characters (U+200B / U+200C) and repeated through the text. Copy-paste and most indexers keep them. They survive verbatim leaks, but sanitizers and paraphrasing remove them.</p>
+            <p><b class="t-v">Trap fact.</b> A unique fictitious statement. LLMs paraphrase, but they keep rare proper nouns and numbers, so even a reworded answer gives the trap term away. Use both channels for the best coverage.</p>
+            <p class="muted" style="margin:0">Tip: give each recipient their own watermarked copy and you'll know who leaked it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="rs-footer"></div>
+</body>
+</html>

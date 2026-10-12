@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Jarpula Nirjala">
+  <title>RavenHoneypot — Decoy AI Assistant & Attacker Profiling</title>
+  <meta name="description" content="A decoy AI assistant that baits attackers, classifies intent (jailbreak, extraction, probing) in real time, hands out trackable fake credentials and fingerprints the client. Free.">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css?v=17">
+  <script src="assets/js/core.js?v=16" defer></script>
+  <script src="assets/js/lib/shield-engine.js?v=16" defer></script>
+  <script src="assets/js/pages/honeypot.js?v=16" defer></script>
+</head>
+<body data-page="honeypot">
+  <div id="rs-header"></div>
+  <main class="container">
+    <section class="tool-hero">
+      <div class="crumbs"><a href="index.html">Home</a> / <a href="index.html#suite">Tools</a> / RavenHoneypot</div>
+      <div class="head"><span class="ico ico-lg" data-icon="flame"></span><h1>Raven<span class="grad">Honeypot</span></h1><span class="tag danger">Bait mode</span></div>
+      <p class="lead">A convincing decoy assistant that never holds real data. It plays along with attackers, classifies every message as <b>jailbreak</b>, <b>extraction</b>, <b>probing</b> or <b>normal</b>, hands out trackable bait credentials (registered in RavenVault automatically) and profiles the client. Use it to train your team, red-team your detection, or prototype your own honeypot.</p>
+    </section>
+
+    <div class="tool-grid wide-left">
+      <div class="stack">
+        <div class="panel">
+          <div class="panel-head">
+            <h3 data-icon="bot"><span id="persona-name">Aria</span> · <span class="muted" id="persona-org" style="font-weight:500">Northwind HR &amp; IT Desk</span></h3>
+            <div class="btn-row"><button class="btn btn-sm" id="cfg-btn" data-icon="cpu">Persona</button><button class="btn btn-sm btn-ghost" id="reset" data-icon="refresh">New session</button></div>
+          </div>
+          <div id="cfg" class="panel-body" style="display:none;border-bottom:1px solid var(--line)">
+            <div class="grid grid-3">
+              <div class="field"><label>Assistant name</label><input id="c-name" type="text" value="Aria"></div>
+              <div class="field"><label>Company</label><input id="c-org" type="text" value="Northwind"></div>
+              <div class="field"><label>Internal domain</label><input id="c-dom" type="text" value="northwind.local"></div>
+            </div>
+            <button class="btn btn-sm btn-primary" id="c-save" data-icon="check">Apply persona</button>
+          </div>
+          <div class="chat">
+            <div class="chat-log" id="log"></div>
+            <div style="padding:0 .8rem .4rem;display:flex;gap:.4rem;flex-wrap:wrap" id="quick"></div>
+            <form class="chat-input" id="form"><input id="msg" type="text" placeholder="Talk to the decoy… try to extract its secrets" autocomplete="off"><button class="btn btn-primary" data-icon="arrow">Send</button></form>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="activity">Live threat profile</h3><span class="tag" id="threat">score 0</span></div>
+          <div class="panel-body">
+            <div class="meter" style="margin-bottom:1rem"><i id="tmeter"></i></div>
+            <div class="grid grid-2" id="intents" style="gap:.6rem"></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="fingerprint">Client fingerprint</h3><span class="tag violet mono" id="fpid">…</span></div>
+          <div class="panel-body"><dl class="kv" id="fp"></dl></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3 data-icon="key">Bait handed out</h3></div>
+          <div class="panel-body" id="baits"><div class="empty">No bait issued yet.</div></div>
+        </div>
+        <button class="btn btn-violet" id="seal" data-icon="chain" style="width:100%">Seal session report into evidence</button>
+      </div>
+    </div>
+  </main>
+  <div id="rs-footer"></div>
+</body>
+</html>

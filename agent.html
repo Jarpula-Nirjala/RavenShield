@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Jarpula Nirjala">
+  <title>RavenAgent — AI Agent Skill Scanner & Runtime Timeline</title>
+  <meta name="description" content="Scan AI agent skills, plugins and MCP servers for shell execution, credential theft, exfiltration and hidden prompt injection. Replay agent logs on a risk timeline and watch heartbeats. Free.">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css?v=17">
+  <script src="assets/js/core.js?v=16" defer></script>
+  <script src="assets/js/lib/shield-engine.js?v=16" defer></script>
+  <script src="assets/js/pages/agent.js?v=16" defer></script>
+</head>
+<body data-page="agent">
+  <div id="rs-header"></div>
+  <main class="container">
+    <section class="tool-hero">
+      <div class="crumbs"><a href="index.html">Home</a> / <a href="index.html#suite">Tools</a> / RavenAgent</div>
+      <div class="head"><span class="ico ico-lg" data-icon="bot"></span><h1>Raven<span class="grad">Agent</span></h1><span class="tag info">Skills · Timeline · Heartbeats</span></div>
+      <p class="lead">Runtime protection for AI agents. Vet a skill, plugin or MCP server <b>before</b> you install it. Replay what an agent actually did on a risk-scored timeline. Watch your agent endpoints' heartbeats and get alerted when one goes dark.</p>
+    </section>
+
+    <div data-tabs>
+      <div class="tabs" style="margin-bottom:1.25rem"><button class="active" data-tab="g-scan">Skill scanner</button><button data-tab="g-time">Action timeline</button><button data-tab="g-beat">Heartbeats</button></div>
+
+      <div class="tab-pane active" id="g-scan">
+        <div class="tool-grid">
+          <div class="panel">
+            <div class="panel-head"><h3 data-icon="file">Skill / plugin source</h3><button class="btn btn-sm" id="sample" data-icon="play">Load malicious sample</button></div>
+            <div class="panel-body">
+              <label class="dropzone" id="sdrop" style="padding:1.2rem"><span data-icon="upload"></span><b>Drop files</b> (SKILL.md, .py, .js, .sh, package.json, manifest…) or click<input type="file" id="sfiles" multiple hidden></label>
+              <div id="sfile-list" class="muted" style="font-size:.8rem;margin:.6rem 0"></div>
+              <textarea id="src" rows="14" placeholder="…or paste the skill source here"></textarea>
+              <div class="field" style="margin-top:1rem"><label>Allowed domains (comma separated)</label><input id="allow" type="text" value="github.com, api.openai.com, api.anthropic.com, pypi.org, registry.npmjs.org"></div>
+              <button class="btn btn-primary" id="scan" data-icon="scan">Scan skill</button>
+            </div>
+          </div>
+          <div class="stack">
+            <div id="sverdict" class="verdict"><div class="v-icon" data-icon="bot"></div><div><h4>Awaiting a skill</h4><p>Drop or paste source to scan.</p></div></div>
+            <div class="panel"><div class="panel-head"><h3 data-icon="alert">Findings</h3><span id="scount" class="tag">0</span></div><div class="panel-body" id="sout"><div class="empty">No scan yet.</div></div></div>
+            <div class="panel"><div class="panel-head"><h3 data-icon="globe">Network destinations</h3></div><div class="panel-body" id="domains"><div class="empty">—</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="g-time">
+        <div class="tool-grid">
+          <div class="panel">
+            <div class="panel-head"><h3 data-icon="terminal">Agent log (JSON Lines)</h3><button class="btn btn-sm" id="tsample" data-icon="play">Load sample</button></div>
+            <div class="panel-body">
+              <p style="font-size:.88rem">One action per line. Recognised fields: <code>ts</code>, <code>agent</code>, <code>tool</code> / <code>action</code>, <code>args</code> / <code>input</code>, <code>output</code>.</p>
+              <textarea id="tlog" rows="14"></textarea>
+              <div class="btn-row" style="margin-top:.8rem"><button class="btn btn-primary" id="replay" data-icon="play">Replay timeline</button><button class="btn" id="tseal" data-icon="chain">Seal flagged into audit</button></div>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="grid grid-3" id="tstats"></div>
+            <div class="panel"><div class="panel-head"><h3 data-icon="activity">Timeline</h3></div><div class="panel-body"><div class="timeline" id="timeline"><div class="empty">Replay a log to see it here.</div></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="g-beat">
+        <div class="tool-grid">
+          <div class="panel">
+            <div class="panel-head"><h3 data-icon="heart">Watch an endpoint</h3></div>
+            <div class="panel-body">
+              <div class="field"><label>Agent / service URL</label><div class="input-row"><input id="hurl" type="url" placeholder="https://my-agent.example.com/health"><button class="btn btn-primary" id="hadd" data-icon="plus">Watch</button></div></div>
+              <div class="field"><label>Check every</label><select id="hint"><option value="15">15 seconds</option><option value="30" selected>30 seconds</option><option value="60">1 minute</option><option value="300">5 minutes</option></select></div>
+              <div class="notice"><span data-icon="info"></span><div>Checks run from this browser tab while it's open. Browsers can only see whether an endpoint is <b>reachable</b>, not its status code, unless it sends CORS headers. If it does, you'll see the full status. Downtime and recovery are sealed into evidence. Turn on desktop notifications in the Dashboard to get alerts.</div></div>
+            </div>
+          </div>
+          <div class="panel"><div class="panel-head"><h3 data-icon="activity">Watched endpoints</h3></div><div class="panel-body" id="hlist"><div class="empty">Nothing watched yet.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div style="height:80px"></div>
+  </main>
+  <div id="rs-footer"></div>
+</body>
+</html>
