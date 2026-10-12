@@ -1,5 +1,8 @@
 # RavenShield
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Jarpula-Nirjala/RavenShield)
+
+
 **Free deception security for the AI era.** Plant decoys, catch leaks, firewall prompt injection, bait attackers, and seal everything into a tamper-evident evidence chain. 100% free, with free accounts, and runs entirely in the browser.
 
 ## Features
@@ -33,6 +36,7 @@ python -m http.server 8080
 Open http://localhost:8080. Use a local server rather than opening files directly, so the service worker and clipboard work.
 
 ## Deploy (all free)
+- **Render:** click the "Deploy to Render" button above (or New + → Blueprint → this repo). `render.yaml` sets up a free static site with security headers.
 - **Netlify:** drag this folder onto https://app.netlify.com/drop. `netlify.toml` sets the security headers and the 404 page.
 - **Vercel:** run `npx vercel` in this folder. `vercel.json` is included.
 - **GitHub Pages:** push to a repo, then Settings → Pages → Deploy from branch (root). `.nojekyll` is included.
